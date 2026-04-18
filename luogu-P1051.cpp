@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+#pragma GCC (O2)
+
+using namespace std;
+int main(){
+	int num[105][6]={0};
+	char g,x,name[105][23]={};
+	int n,sum=0,nmax=-1,index;
+	cin>>n;
+	for(int i=0;i<n;i++){
+		cin>>name[i];
+		cin>>num[i][0]>>num[i][1]>>g>>x>>num[i][4];
+		num[i][2]=(g=='Y'?1:0);
+		num[i][3]=(x=='Y'?1:0);
+		
+		
+		if(num[i][0]>80 && num[i][4]>=1) {num[i][5]+=8000;sum+=8000;}
+		if(num[i][0]>85 && num[i][1]>80) {num[i][5]+=4000;sum+=4000;}
+		if(num[i][0]>90){num[i][5]+=2000;sum+=2000;}
+		if(num[i][0]>85 && num[i][3]==1){num[i][5]+=1000;sum+=1000;}
+		if(num[i][1]>80 && num[i][2]==1){num[i][5]+=850;sum+=850;}
+		if(num[i][5]>nmax){nmax=num[i][5];index=i;}
+	}
+	
+	cout<<name[index]<<endl<<num[index][5]<<endl<<sum;
+	return 0;
+	
+	
+}

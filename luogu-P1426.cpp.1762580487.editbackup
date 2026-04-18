@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	double s,x,sum=0,v=7;
+	int c=0;
+	cin>>s>>x;
+	while(1){
+		if(sum>=s-x && sum<=s+x){
+			if(sum+v<=s+x) cout<<"y";
+			else cout<<"n";
+			break;
+		}
+		sum+=v;c++;v=v*0.98;
+	}
+	return 0;
+	
+}

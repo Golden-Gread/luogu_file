@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int n,a,b,g,k,x,y;
+	int num[10005][4]={0};
+	cin>>n;
+	for(int i=0;i<n;i++){
+		cin>>a>>b>>g>>k;
+		num[i][0]=a;num[i][1]=b;num[i][2]=a+g;num[i][3]=b+k;
+		
+	}
+	a=-1;
+	
+	cin>>x>>y;
+	for(int i=0;i<n;i++){
+		if((x>=num[i][0] && x<=num[i][2]) && (y<=num[i][3] && y>=num[i][1])){
+			a=i+1;
+			
+		}
+	}
+	cout<<a;
+	return 0;
+	
+}

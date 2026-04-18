@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	long long hd=0,n,k,sum=0;
+	cin>>n>>k;
+	while(n!=0 || hd/k!=0){
+		n--;hd++;
+		if(hd/k>0){n++;hd-=k;}
+		sum++;
+		
+	}
+	cout<<sum;
+	return 0;
+	
+}

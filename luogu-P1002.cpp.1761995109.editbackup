@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int num[24][24]={0};
+	int step[8][2]={{-2,1},{-1,2},{1,2},{2,1},{2,-1},{1,-2}};
+	int n,m,x,y;
+	cin>>n>>m>>x>>y;
+	
+}

@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int n,nmax=-1000002,m,x,sum=0;
+	cin>>n;
+	
+	for(int i=0;i<n;i++){
+		cin>>x;sum+=x;
+		if(x==nmax){m++;}
+		if(x>nmax){nmax=x;m=1;}
+		
+	}
+	cout<<sum-nmax*m;
+	return 0;
+	
+}
