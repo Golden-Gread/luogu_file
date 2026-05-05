@@ -33,19 +33,31 @@ int main(){
 	for(auto it:rules){
 		if(foods[it.second]==0){
 			temp |= (1ULL << it.first);
-			
 		}
 	}
 	
+	int zero_num=__builtin_popcountll(temp);
 	
-	ull total_num=1;
-	for(bool b:foods){
-		if(b==1){
-			total_num*=2;
+	
+	uint64_t total_ok;
+	if (k - zero_num == 64) {
+		total_ok = UINT64_MAX;  
+		total_ok = 0;  
+	} else {
+		total_ok = 1ULL << (k - zero_num);
+	}
+	
+	
+	uint64_t already_ok = 0;
+	for (auto x : animals) {
+		if ((x & temp) == 0) {
+			already_ok++;
 		}
 	}
 	
-	cout<<total_num-n;
+	uint64_t answer = total_ok - already_ok;
+	cout << answer << endl;
+	
 	
 	
 	return 0;
