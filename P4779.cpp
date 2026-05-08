@@ -1,45 +1,59 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+typedef pair<ll,ll> p; //(distance,node)
 
-const int INF=1e9;
 
-typedef pair<int,int> p;
+const int INT=1e9;
 
-int main(){
-    int n,m,s;
-    cin>>n>>m>>s;
-    
-    map<p,long long> graph;
+vector<ll> dij(vector<vector<p>> &graph, int str_node){
+    int n=graph.size();
+    vector<ll> dist(n,INT);
+    dist[str_node]=0;
+
+    priority_queue<p,vector<p>,greater<p>> pq;
+    pq.push({0,str_node});
+
+    while(!pq.empty()){
+        auto it=pq.top();
+        pq.pop();
+
+        if(dist[it.second]<it.first) continue;
         
+        for(auto it_1:graph[it.second]){
+            int dis=it_1.first;
+            int node=it_1.second;
 
-    for(int i=1;i<=n;i++)
-        graph[p(i,i)]=0;
-    for(int i=1;i<=m;i++){
-        int u,v,w;
-        cin>>u>>v>>w;
-        graph[p(u,v)]=w;
-        graph[p(v,u)]=w;
-    }
-
-    for (int k = 1; k <= n; ++k) {          
-        for (int i = 1; i <= n; ++i) {      
-            for (int j = 1; j <= n; ++j) {  
-                if (graph.find(p(i,j)) != graph.end() && graph.find(p(i,k)) != graph.end() && graph.find(p(k,j)) != graph.end()) {
-                    if (graph[p(i,k)] + graph[p(k,j)] < graph[p(i,j)]) {
-                        graph[p(i,j)] = graph[p(i,k)] + graph[p(k,j)];
-                    }
-                }
+            if(dist[node]>dist[it.second]+dis){
+                dist[node]=dist[it.second]+dis;
+                pq.push({dist[node],node});
             }
         }
     }
 
-    
+    return dist;
 
-    
-    for(int i=1;i<=n;i++){
-       cout<<graph[p(s,i)]<<" ";
+}
+
+
+
+int main(){
+    int n,m,s;
+
+    cin>>n>>m>>s;
+
+    vector<vector<p>> graph(n+1);
+    for(int i=0;i<m;i++){
+        int u,v,w;
+        cin>>u>>v>>w;
+        graph[u].push_back(make_pair(w,v));
+    }
+
+    vector<ll> dist=dij(graph,s);
+
+    for(int i=1;i<dist.size();i++){
+        cout<<dist[i]<<" ";
     }
 
     return 0;
-
 }
