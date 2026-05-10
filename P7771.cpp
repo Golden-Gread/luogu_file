@@ -34,20 +34,55 @@ int main(){
     }
 
     for(int i=1;i<=n;i++){
-        path.clear();
-        if(indeg[i]-outdeg[i]==-1){
-            
-            hierholzer_dfs(i);
-            if(path.empty()) continue;
-            reverse(path.begin(),path.end());
-            for(auto x:path){
-                cout<<x<<" ";
+        int diffr = outdeg[i]-indeg[i];
+
+        if(abs(diffr) > 1){
+            is_possible = 0;
+            break;
+        }
+        if(diffr==1){
+            if(start!=-1) is_possible=0;
+            start = i;
+        }
+        if(diffr==-1){
+            if(end!=-1){
+                is_possible=0;
             }
-            cout<<endl;
+            end=i;
+        }
+    }
+
+    if(is_possible==0){
+        cout<<"No"<<endl;
+        return 0;
+    }
+
+    if(start == -1){  
+        for(int i = 1; i <= n; i++){
+            if(outdeg[i] > 0){
+                start = i;
+                break;
+            }
+        }
+        if(start == -1){
+            cout << "No" << endl;  
             return 0;
         }
     }
 
-    cout<<"No"<<endl;
+    hierholzer_dfs(start);
+
+    if(path.size() != m + 1){
+        cout << "No" << endl;
+        return 0;
+    }
+    
+    reverse(path.begin(), path.end());
+
+    for(auto x : path){
+        cout << x << " ";
+    }
+    cout << endl;
+    
     return 0;
 }
