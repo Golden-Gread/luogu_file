@@ -33,6 +33,9 @@ int main(){
         indeg[v]++;
     }
 
+    int start=-1,end=-1;
+    bool is_possible=1;
+
     for(int i=1;i<=n;i++){
         int diffr = outdeg[i]-indeg[i];
 
