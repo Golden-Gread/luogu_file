@@ -33,59 +33,21 @@ int main(){
         indeg[v]++;
     }
 
-    int start=-1,end=-1;
-    bool is_possible=1;
-
     for(int i=1;i<=n;i++){
-        int diffr = outdeg[i]-indeg[i];
-
-        if(abs(diffr) > 1){
-            is_possible = 0;
-            break;
-        }
-        if(diffr==1){
-            if(start!=-1) is_possible=0;
-            start = i;
-        }
-        if(diffr==-1){
-            if(end!=-1){
-                is_possible=0;
+        path.clear();
+        if(indeg[i]-outdeg[i]==-1){
+            
+            hierholzer_dfs(i);
+            if(path.empty()) continue;
+            reverse(path.begin(),path.end());
+            for(auto x:path){
+                cout<<x<<" ";
             }
-            end=i;
-        }
-    }
-
-    if(is_possible==0){
-        cout<<"No"<<endl;
-        return 0;
-    }
-
-    if(start == -1){  
-        for(int i = 1; i <= n; i++){
-            if(outdeg[i] > 0){
-                start = i;
-                break;
-            }
-        }
-        if(start == -1){
-            cout << "No" << endl;  
+            cout<<endl;
             return 0;
         }
     }
 
-    hierholzer_dfs(start);
-
-    if(path.size() != m + 1){
-        cout << "No" << endl;
-        return 0;
-    }
-    
-    reverse(path.begin(), path.end());
-
-    for(auto x : path){
-        cout << x << " ";
-    }
-    cout << endl;
-    
+    cout<<"No"<<endl;
     return 0;
 }

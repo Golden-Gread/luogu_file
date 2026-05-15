@@ -43,7 +43,7 @@ std::vector<int> dij(std::vector<std::vector<std::pair<int, int>>> &graph, int s
 }
 
 
-std::pair<std::vector<int>, std::vector<int>> dijkstra_path(std::vector<std::vector<std::pair<int, int>>> &graph, int str_node){
+std::pair< std::vector< int > , std::vector< int > > dijkstra_path(std::vector<std::vector<std::pair<int, int>>> &graph, int str_node){
     
 }
 
