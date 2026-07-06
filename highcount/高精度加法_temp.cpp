@@ -2,6 +2,9 @@
 using namespace std;
 int main(){
 	string s1,s2,result="";cin>>s1>>s2;
+	bool isS1=false,isS2=false;
+	if(s1[0]=='-') {isS1==true;s1.substr(1);}
+	if(s2[0]=='-') {isS2=true;s2.substr(1);}
 	int a[2000]={0},b[2000]={0},c[2002]={0};
 	for(int i=s1.length()-1;i>=0;i--){
 		a[s1.length()-i-1]=s1[i]-'0';
@@ -15,6 +18,7 @@ int main(){
 	}
 	int len=max((int)s1.length(),(int)s2.length());
 	while(c[len]==0 and len>=1){len--;}
+	if()
 	for(int i=len;i>=0;i--){cout<<c[i];}
 	return 0;
 }
